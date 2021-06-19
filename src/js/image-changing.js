@@ -4,7 +4,7 @@ import { modalImage } from '../index';
 const changeImage = target => {
     modalImage.src= target.dataset.source;
     modalImage.alt = target.getAttribute('alt');
-    // activeImage = target;
+    modalImage.dataset.index = target.dataset.index;
 };
  
 export default changeImage;

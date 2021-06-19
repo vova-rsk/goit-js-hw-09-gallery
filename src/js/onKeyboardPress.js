@@ -1,6 +1,6 @@
 import { closeModal } from './modal-state-changing';
 import changeImage from './image-changing';
-
+import { gallery, modalImage } from '../index';
 
 /*Функция-обработчик нажатия клавиши клавиатуры*/
 const onKeyboardPress = e => {
@@ -9,25 +9,24 @@ const onKeyboardPress = e => {
         return;
     }
 
-    // if (e.code === 'ArrowLeft') {
-    //     const previousSiblingBranch = activeImage.closest('li').previousElementSibling;
-
-    //     if (previousSiblingBranch) {
-    //         const previousImage = previousSiblingBranch.querySelector('.gallery__image');
-    //         changeImage(previousImage);
-    //     }
-    //     return;
-    // }
-
-    // if (e.code === 'ArrowRight') {
-    //     const nextSiblingBranch = activeImage.closest('li').nextElementSibling;
-
-    //     if (nextSiblingBranch) {
-    //         const nextImage = nextSiblingBranch.querySelector('.gallery__image');
-    //         changeImage(nextImage);
-    //     }
-    //     return;
-    // }
+    const index = Number(modalImage.dataset.index);
+    
+    if (e.code === 'ArrowLeft') {
+        
+        if (index > 0) {
+            const previousImage = gallery.querySelector(`[data-index="${index - 1}"]`);
+            changeImage(previousImage);
+        }
+        return;
+    }
+    
+    if (e.code === 'ArrowRight') {
+        if (index < gallery.children.length - 1) {
+            const nextImage = gallery.querySelector(`[data-index="${index + 1}"]`);
+            changeImage(nextImage);
+        }
+        return;
+    }
 };
 
 export default onKeyboardPress;

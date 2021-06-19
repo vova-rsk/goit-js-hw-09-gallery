@@ -8,8 +8,9 @@ const openModal = e => {
     modal.classList.add('is-open');
     modalImage.src = e.target.dataset.source;
     modalImage.alt = e.target.getAttribute('alt');
-    // activeImage = e.target;
-
+    
+    modalImage.dataset.index = e.target.dataset.index;
+    
     window.addEventListener('keydown', onKeyboardPress);
     modal.addEventListener('click', onModalElemsClick);
 };
